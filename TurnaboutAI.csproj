@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(PWAAT_PATH)\$(ProjectName).dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)0Harmony.dll&quot; &quot;$(PWAAT_PATH)\0Harmony.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Mdb.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Mdb.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Pdb.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Pdb.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Rocks.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Rocks.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Backports.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Backports.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Core.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Core.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Iced.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Iced.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.ILHelpers.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.ILHelpers.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.RuntimeDetour.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.RuntimeDetour.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Utils.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Utils.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)Newtonsoft.Json.dll&quot; &quot;$(PWAAT_PATH)\Newtonsoft.Json.dll&quot;" />
+	<Exec Command="copy /Y &quot;$(TargetDir)websocket-sharp.dll&quot; &quot;$(PWAAT_PATH)\websocket-sharp.dll&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.14.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(PWAAT_PATH)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PWAAT_PATH)\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(PWAAT_PATH)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(PWAAT_PATH)\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(PWAAT_PATH)\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(PWAAT_PATH)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
