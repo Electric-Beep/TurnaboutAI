@@ -23,7 +23,7 @@ The game library and revelant dependencies should be placed in `PWAAT_Data\Manag
 
 <details>
 
-<summary>Mod file and dependancies</summary>
+<summary>Mod file and dependencies</summary>
 
 ```
 TurnaboutAI.dll
