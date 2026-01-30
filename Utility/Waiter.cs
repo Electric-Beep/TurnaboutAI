@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace TurnaboutAI
+namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// Helper class to wait for a duration.

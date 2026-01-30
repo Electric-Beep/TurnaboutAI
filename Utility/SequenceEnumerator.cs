@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace TurnaboutAI
+namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// An enumerator that wraps an enumerable, enumerating any enumerables it may yield.

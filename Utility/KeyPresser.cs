@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace TurnaboutAI
+namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// Simulates key presses.

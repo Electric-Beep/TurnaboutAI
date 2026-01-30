@@ -1,4 +1,6 @@
-﻿namespace TurnaboutAI.Actions
+﻿using TurnaboutAI.Utility;
+
+namespace TurnaboutAI.Actions
 {
     /// <summary>
     /// Represents a spot that can be examined during Inspect sections.

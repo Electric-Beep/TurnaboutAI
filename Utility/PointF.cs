@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TurnaboutAI
+namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// Represents a point in space.

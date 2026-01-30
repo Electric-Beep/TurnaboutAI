@@ -1,6 +1,7 @@
-﻿using TurnaboutAI.Actions;
-using HarmonyLib;
+﻿using HarmonyLib;
 using System.Collections.Generic;
+using TurnaboutAI.Actions;
+using TurnaboutAI.Utility;
 
 namespace TurnaboutAI.Patches
 {

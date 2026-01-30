@@ -1,4 +1,4 @@
-﻿namespace TurnaboutAI
+﻿namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// Encapsulates mod configuration values.

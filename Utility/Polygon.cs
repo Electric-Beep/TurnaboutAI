@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TurnaboutAI
+namespace TurnaboutAI.Utility
 {
     /// <summary>
     /// Represents a shape with at least 3 sides.
