@@ -22,12 +22,12 @@ namespace TurnaboutAI
         static Plugin()
         {
             Config = GetConfig();
-#if DEBUG
+
             if(Config.LogToConsole && AllocConsole())
             {
                 _stdHandle = GetStdHandle(-11);
             }
-#endif
+
             _logger = new StreamWriter("TurnaboutAI.log");
             SaveLoadHelper.SetSlot(Config.SaveSlot);
         }
@@ -100,13 +100,13 @@ namespace TurnaboutAI
         {
             try
             {
-#if DEBUG
+
                 if (_stdHandle != IntPtr.Zero)
                 {
                     byte[] buffer = Encoding.UTF8.GetBytes(text + "\r\n");
                     WriteConsole(_stdHandle, buffer, buffer.Length, out int _, IntPtr.Zero);
                 }
-#endif
+
                 _logger.WriteLine(text);
                 _logger.Flush();
             }
