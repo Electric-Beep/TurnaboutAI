@@ -66,6 +66,13 @@ namespace TurnaboutAI
         void FixedUpdate()
         {
             KeyPresser.ReleaseKey();
+
+            if(_neuro?.WantsShutdown ?? false && CanSave())
+            {
+                _neuro.WantsShutdown = false;
+                SaveData = SaveLoadHelper.GetSaveData();
+                coroutineCtrl.instance.Play(SaveLoadHelper.DoSave(SaveData));
+            }
         }
 
         /// <summary>
@@ -166,7 +173,7 @@ namespace TurnaboutAI
 
             UnregisterAllActions();
 
-            if (ShouldSave())
+            if (CanSave())
             {
                 Utilities.Do(SaveLoadHelper.DoSave(SaveData), Do);
             }
@@ -251,7 +258,7 @@ namespace TurnaboutAI
         /// </summary>
         public void SetTalkOptions(List<TalkOption> options, bool isSelect)
         {
-            if(isSelect && ShouldSave())
+            if(isSelect && CanSave())
             {
                 Utilities.Do(SaveLoadHelper.DoSave(SaveData), Do);
             }
@@ -321,7 +328,7 @@ namespace TurnaboutAI
         /// <param name="text">Final dialogue.</param>
         public void TextFinished(string text, bool canGoBack, guideCtrl.GuideType guideType)
         {
-            if (ShouldSave(guideType))
+            if (CanSave(guideType))
             {
                 SaveData = SaveLoadHelper.GetSaveData();
             }
@@ -453,12 +460,12 @@ namespace TurnaboutAI
             }
         }
 
-        private bool ShouldSave()
+        private bool CanSave()
         {
-            return ShouldSave(_lastGuideType) && SaveData != null;
+            return CanSave(_lastGuideType) && SaveData != null;
         }
 
-        private bool ShouldSave(guideCtrl.GuideType guideType)
+        private bool CanSave(guideCtrl.GuideType guideType)
         {
             if (!Plugin.Config.SafetySave) return false;
 

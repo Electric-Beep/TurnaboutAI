@@ -56,22 +56,32 @@ namespace TurnaboutAI.SaveLoad
         {
             Plugin.LogInfo("!!! SAFETY SAVE !!!");
 
-            SaveData saveTemp = new SaveData
+            SaveData saveTemp;
+
+            try
             {
-                time = GSStatic.save_data[SaveSlotNo].time,
-                title = GSStatic.save_data[SaveSlotNo].title,
-                scenario = GSStatic.save_data[SaveSlotNo].scenario,
-                progress = GSStatic.save_data[SaveSlotNo].progress,
-                in_data = GSStatic.save_data[SaveSlotNo].in_data
-            };
+                saveTemp = new SaveData
+                {
+                    time = GSStatic.save_data[SaveSlotNo].time,
+                    title = GSStatic.save_data[SaveSlotNo].title,
+                    scenario = GSStatic.save_data[SaveSlotNo].scenario,
+                    progress = GSStatic.save_data[SaveSlotNo].progress,
+                    in_data = GSStatic.save_data[SaveSlotNo].in_data
+                };
 
-            GSStatic.save_data[SaveSlotNo].time = saveData.SaveData.time;
-            GSStatic.save_data[SaveSlotNo].title = saveData.SaveData.title;
-            GSStatic.save_data[SaveSlotNo].scenario = saveData.SaveData.scenario;
-            GSStatic.save_data[SaveSlotNo].progress = saveData.SaveData.progress;
-            GSStatic.save_data[SaveSlotNo].in_data = saveData.SaveData.in_data;
+                GSStatic.save_data[SaveSlotNo].time = saveData.SaveData.time;
+                GSStatic.save_data[SaveSlotNo].title = saveData.SaveData.title;
+                GSStatic.save_data[SaveSlotNo].scenario = saveData.SaveData.scenario;
+                GSStatic.save_data[SaveSlotNo].progress = saveData.SaveData.progress;
+                GSStatic.save_data[SaveSlotNo].in_data = saveData.SaveData.in_data;
 
-            SaveDataAccessor.SaveRequest(SaveControl.GetSystemDataFileName(), saveData.SaveDataBytes);
+                SaveDataAccessor.SaveRequest(SaveControl.GetSystemDataFileName(), saveData.SaveDataBytes);
+            }
+            catch(Exception ex)
+            {
+                Plugin.LogError(ex);
+                yield break;
+            }
 
             while (!SaveControl.is_save_)
             {
@@ -83,6 +93,10 @@ namespace TurnaboutAI.SaveLoad
                 Plugin.LogError("!!! SAVE ERROR !!!");
 
                 RestoreTemp(saveTemp);
+            }
+            else
+            {
+                Plugin.LogInfo("!!! SAVE DONE !!!");
             }
         }
 
