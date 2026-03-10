@@ -121,8 +121,25 @@ namespace TurnaboutAI.Patches
 
         [HarmonyPatch(typeof(MessageSystem), nameof(MessageSystem.Message_main))]
         [HarmonyPrefix]
+        static void TryMessageMain()
+        {
+            try
+            {
+                MessageMain();
+            }
+            catch(Exception ex)
+            {
+                Plugin.LogError(ex);
+            }
+        }
+
         static void MessageMain()
         {
+            if (messageBoardCtrl.instance == null
+                || messageBoardCtrl.instance.arrowL == null
+                || messageBoardCtrl.instance.arrowR == null
+                || messageBoardCtrl.instance.guide_ctrl == null) return;
+
             bool arrowLActive = messageBoardCtrl.instance.arrowL.active;
             bool arrowRActive = messageBoardCtrl.instance.arrowR.active;
             var guideType = messageBoardCtrl.instance.guide_ctrl.current_guide;
@@ -137,12 +154,12 @@ namespace TurnaboutAI.Patches
                     ModStateManager.Instance.TextFinished(curMsg, arrowLActive, guideType);
                 }
 
-                messageBoardCtrl.instance.guide_ctrl.changeGuide(messageBoardCtrl.instance.guide_ctrl.GetChangeGuideType());
+                //messageBoardCtrl.instance.guide_ctrl.changeGuide(messageBoardCtrl.instance.guide_ctrl.GetChangeGuideType());
             }
 
             MessageWork activeMessage = MessageSystem.GetActiveMessageWork();
 
-            if (activeMessage.mdt_data == null)
+            if (activeMessage?.mdt_data == null)
             {
                 return;
             }

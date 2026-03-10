@@ -66,8 +66,8 @@ Refer to `Config.cs` to read descriptions of each config value.
 
 ## Notes
 
-Spots that can be chosen during Examine sections of the game have vague names because I could not find anywhere that actually related a name to each spot. Additionally, I could not find a reliable way to even associate each set of inspect hit boxes with a corresponding background image. I determined it would take **a lot** of manual work to relate meaningful names to the **hundreds** of spots.
+I recommend starting the game up at least once before using this mod as the game has a couple of screens that appear on first run.
 
-I didn't write handling for the minigames in the last episode of game 1, since they were made for DS touch controls, and implementation would essentially be a "Solve Puzzle" action.
+Spots that can be chosen during Examine sections of the game have vague names because I could not find anywhere that actually related a name to each spot.
 
-That isn't much fun, so I'm leaving those minigames for a human companion to solve.
+I didn't write handling for the minigames in the last episode of game 1, since they were made for DS touch controls, and implementation would essentially be a "Solve Puzzle" action. That isn't much fun, so I'm leaving those minigames for a human companion to solve.

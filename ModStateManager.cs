@@ -75,7 +75,25 @@ namespace TurnaboutAI
         public static ModStateManager Instance => _instance;
 
         /// <summary>
-        /// Call when a save is loaded.
+        /// Registers the action to start a new game.
+        /// </summary>
+        public void MainMenuNewGame()
+        {
+            UnregisterAllActions();
+            RegisterAction(new NewGameAction());
+        }
+
+        /// <summary>
+        /// Registers the action to continue a saved game.
+        /// </summary>
+        public void MainMenuContinueGame()
+        {
+            UnregisterAllActions();
+            RegisterAction(new ContinueGameAction());
+        }
+
+        /// <summary>
+        /// Called when a save is loaded.
         /// </summary>
         public void Load()
         {

@@ -50,15 +50,23 @@ namespace TurnaboutAI.Utility
             _pressedKeyCode = keyCode;
         }
 
+        /// <summary>
+        /// Presses a key for a number of seconds.
+        /// </summary>
         public static void LongPress(KeyType keyType, float duration)
         {
+            Plugin.LogInfo($"press: {keyType}; dur: {duration}");
             _longPressDur = duration;
             _time = 0;
             _pressedKey = keyType;
         }
 
+        /// <summary>
+        /// Presses a key for a number of frames.
+        /// </summary>
         public static void LongPress(KeyType keyType, int frames)
         {
+            Plugin.LogInfo($"press: {keyType}; frames: {frames}");
             _longPressFrames = frames;
             _pressedKey = keyType;
         }
@@ -83,6 +91,16 @@ namespace TurnaboutAI.Utility
             {
                 _longPressFrames--;
                 return;
+            }
+
+            if(_pressedKey != KeyType.None)
+            {
+                Plugin.LogInfo($"release: {_pressedKey}");
+            }
+
+            if(_pressedKeyCode != KeyCode.None)
+            {
+                Plugin.LogInfo($"release: {_pressedKeyCode}");
             }
 
             _pressedKey = KeyType.None;
