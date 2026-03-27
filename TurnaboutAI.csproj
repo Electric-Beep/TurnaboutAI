@@ -3,23 +3,6 @@
     <TargetFramework>net35</TargetFramework>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(PWAAT_PATH)\$(ProjectName).dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)0Harmony.dll&quot; &quot;$(PWAAT_PATH)\0Harmony.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Mdb.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Mdb.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Pdb.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Pdb.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)Mono.Cecil.Rocks.dll&quot; &quot;$(PWAAT_PATH)\Mono.Cecil.Rocks.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Backports.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Backports.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Core.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Core.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Iced.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Iced.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.ILHelpers.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.ILHelpers.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.RuntimeDetour.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.RuntimeDetour.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)MonoMod.Utils.dll&quot; &quot;$(PWAAT_PATH)\MonoMod.Utils.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)Newtonsoft.Json.dll&quot; &quot;$(PWAAT_PATH)\Newtonsoft.Json.dll&quot;" />
-	<Exec Command="copy /Y &quot;$(TargetDir)websocket-sharp.dll&quot; &quot;$(PWAAT_PATH)\websocket-sharp.dll&quot;" />
-  </Target>
-
   <ItemGroup>
     <PackageReference Include="HarmonyX" Version="2.14.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
@@ -46,5 +29,19 @@
       <HintPath>$(PWAAT_PATH)\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+	<Target Name="CopyOutputFiles" AfterTargets="PostBuildEvent">
+		<ItemGroup>
+			<Lib Include="$(TargetDir)$(ProjectName).dll" />
+			<Lib Include="$(TargetDir)0Harmony.dll" />
+			<Lib Include="$(TargetDir)Mono.Cecil.dll" />
+			<Lib Include="$(TargetDir)Mono.Cecil.*.dll" />
+			<Lib Include="$(TargetDir)MonoMod.*.dll" />
+			<Lib Include="$(TargetDir)Newtonsoft.Json.dll" />
+			<Lib Include="$(TargetDir)websocket-sharp.dll" />
+		</ItemGroup>
+		
+		<Copy SourceFiles="@(Lib)" DestinationFolder="$(PWAAT_PATH)" />
+	</Target>
 
 </Project>
