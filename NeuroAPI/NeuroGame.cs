@@ -206,6 +206,10 @@ namespace TurnaboutAI.NeuroAPI
         {
             Plugin.LogInfo("worker started.");
             var context = (ThreadContext)state;
+            var serializerSettings = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+            };
 
             try
             {
@@ -265,7 +269,7 @@ namespace TurnaboutAI.NeuroAPI
                             foreach (var msg in context.EnumerateSend())
                             {
                                 Plugin.LogInfo($"send: {msg}");
-                                Send(socket, msg);
+                                Send(socket, msg, serializerSettings);
                             }
                         }
                         catch (Exception ex)
@@ -392,9 +396,9 @@ namespace TurnaboutAI.NeuroAPI
             }
         }
 
-        private static void Send<T>(WebSocket socket, T message)
+        private static void Send<T>(WebSocket socket, T message, JsonSerializerSettings serializerSettings)
         {
-            string json = JsonConvert.SerializeObject(message);
+            string json = JsonConvert.SerializeObject(message, serializerSettings);
 
             socket.Send(json);
         }

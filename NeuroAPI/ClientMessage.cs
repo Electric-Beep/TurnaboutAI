@@ -36,10 +36,10 @@ namespace TurnaboutAI.NeuroAPI
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("success")]
+        [JsonProperty("success", DefaultValueHandling = DefaultValueHandling.Include)]
         public bool Success { get; set; }
 
-        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("message")]
         public string Message { get; set; }
 
         public override string ToString()
@@ -67,7 +67,7 @@ namespace TurnaboutAI.NeuroAPI
 
     public sealed class RegisterActionsData
     {
-        [JsonProperty("actions")]
+        [JsonProperty("actions", DefaultValueHandling = DefaultValueHandling.Include)]
         public Action[] Actions { get; set; }
 
         public override string ToString()
@@ -80,7 +80,7 @@ namespace TurnaboutAI.NeuroAPI
 
     public sealed class UnregisterActionsData
     {
-        [JsonProperty("action_names")]
+        [JsonProperty("action_names", DefaultValueHandling = DefaultValueHandling.Include)]
         public string[] ActionNames { get; set; }
 
         public override string ToString()
@@ -114,10 +114,10 @@ namespace TurnaboutAI.NeuroAPI
         [JsonProperty("query")]
         public string Query { get; set; }
 
-        [JsonProperty("ephemeral_context")]
+        [JsonProperty("ephemeral_context", DefaultValueHandling = DefaultValueHandling.Include)]
         public bool EphemeralContext { get; set; }
 
-        [JsonProperty("priority"), JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("priority", DefaultValueHandling = DefaultValueHandling.Include), JsonConverter(typeof(StringEnumConverter))]
         public ForcePriority Priority { get; set; }
 
         [JsonProperty("actions_names")]
@@ -129,7 +129,7 @@ namespace TurnaboutAI.NeuroAPI
         [JsonProperty("message")]
         public string Message { get; set; }
 
-        [JsonProperty("silent")]
+        [JsonProperty("silent", DefaultValueHandling = DefaultValueHandling.Include)]
         public bool Silent { get; set; }
 
         public override string ToString()
